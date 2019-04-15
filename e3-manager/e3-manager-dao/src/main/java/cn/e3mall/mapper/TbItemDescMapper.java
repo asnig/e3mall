@@ -1,9 +1,10 @@
 package cn.e3mall.mapper;
 
-import cn.e3mall.pojo.TbItemDesc;
-import cn.e3mall.pojo.TbItemDescExample;
-import java.util.List;
+import cn.e3mall.common.pojo.TbItemDesc;
+import cn.e3mall.common.pojo.TbItemDescExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TbItemDescMapper {
     int countByExample(TbItemDescExample example);

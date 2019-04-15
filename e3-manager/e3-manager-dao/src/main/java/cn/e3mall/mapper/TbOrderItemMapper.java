@@ -1,9 +1,10 @@
 package cn.e3mall.mapper;
 
-import cn.e3mall.pojo.TbOrderItem;
-import cn.e3mall.pojo.TbOrderItemExample;
-import java.util.List;
+import cn.e3mall.common.pojo.TbOrderItem;
+import cn.e3mall.common.pojo.TbOrderItemExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TbOrderItemMapper {
     int countByExample(TbOrderItemExample example);

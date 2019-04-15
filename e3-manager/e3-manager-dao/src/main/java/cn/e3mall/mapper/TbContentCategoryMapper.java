@@ -1,9 +1,10 @@
 package cn.e3mall.mapper;
 
-import cn.e3mall.pojo.TbContentCategory;
-import cn.e3mall.pojo.TbContentCategoryExample;
-import java.util.List;
+import cn.e3mall.common.pojo.TbContentCategory;
+import cn.e3mall.common.pojo.TbContentCategoryExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TbContentCategoryMapper {
     int countByExample(TbContentCategoryExample example);

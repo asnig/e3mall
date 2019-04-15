@@ -1,9 +1,10 @@
 package cn.e3mall.mapper;
 
-import cn.e3mall.pojo.TbItemCat;
-import cn.e3mall.pojo.TbItemCatExample;
-import java.util.List;
+import cn.e3mall.common.pojo.TbItemCat;
+import cn.e3mall.common.pojo.TbItemCatExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TbItemCatMapper {
     int countByExample(TbItemCatExample example);
