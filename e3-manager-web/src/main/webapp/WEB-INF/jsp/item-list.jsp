@@ -156,7 +156,7 @@
         iconCls: 'icon-remove',
         handler: function () {
             var ids = getSelectionsIds();
-            if (ids.length == 0) {
+            if (ids.length === 0) {
                 $.messager.alert('提示', '未选中商品!');
                 return;
             }
@@ -164,7 +164,7 @@
                 if (r) {
                     var params = {"ids": ids};
                     $.post("/rest/item/reshelf", params, function (data) {
-                        if (data.status == 200) {
+                        if (data.status === 200) {
                             $.messager.alert('提示', '上架商品成功!', undefined, function () {
                                 $("#itemList").datagrid("reload");
                             });
