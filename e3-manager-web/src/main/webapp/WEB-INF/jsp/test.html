@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p onclick="change(this)">测试测试</p>
+</body>
+<script>
+    var i = 0;
+
+    function change(ele) {
+        if (i === 0) {
+            ele.innerHTML = "啊";
+        } else if (i === 1) {
+            ele.innerHTML = "宝贝";
+        } else if (i === 2) {
+            ele.innerHTML = "错错";
+        }
+        i++;
+        if (i > 2) {
+            i = 0;
+        }
+    }
+</script>
+</html>

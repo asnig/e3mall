@@ -12,7 +12,6 @@ public interface TbItemMapper {
     int deleteByExample(TbItemExample example);
 
     int deleteByPrimaryKey(Long id);
-
     int insert(TbItem record);
 
     int insertSelective(TbItem record);

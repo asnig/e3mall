@@ -13,7 +13,7 @@ Date.prototype.format = function (format) {
     }
     for (var k in o) {
         if (new RegExp("(" + k + ")").test(format)) {
-            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
         }
     }
     return format;
@@ -47,9 +47,9 @@ var E3 = {
     },
     // 格式化商品的状态
     formatItemStatus: function formatStatus(val, row) {
-        if (val == 1) {
+        if (val === 1) {
             return '正常';
-        } else if (val == 2) {
+        } else if (val === 2) {
             return '<span style="color:red;">下架</span>';
         } else {
             return '未知';

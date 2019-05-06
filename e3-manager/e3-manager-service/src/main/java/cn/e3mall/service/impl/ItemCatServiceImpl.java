@@ -25,8 +25,7 @@ public class ItemCatServiceImpl implements ItemCatService {
         List<EasyUITreeNode> result = new ArrayList<>();
 
         TbItemCatExample example = new TbItemCatExample();
-        TbItemCatExample.Criteria criteria = example.createCriteria();
-        criteria.andParentIdEqualTo(parentId);
+        TbItemCatExample.Criteria criteria = example.createCriteria().andParentIdEqualTo(parentId);
         List<TbItemCat> list = mapper.selectByExample(example);
         for (TbItemCat tbItemCat : list) {
             EasyUITreeNode node = new EasyUITreeNode();

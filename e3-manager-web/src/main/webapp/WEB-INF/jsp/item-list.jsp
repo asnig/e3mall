@@ -45,7 +45,7 @@
         iconCls: 'icon-edit',
         handler: function () {
             var ids = getSelectionsIds();
-            if (ids.length == 0) {
+            if (ids.length === 0) {
                 $.messager.alert('提示', '必须选择一个商品才能编辑!');
                 return;
             }
@@ -53,7 +53,6 @@
                 $.messager.alert('提示', '只能选择一个商品!');
                 return;
             }
-
             $("#itemEditWindow").window({
                 onLoad: function () {
                     //回显数据
@@ -63,7 +62,7 @@
 
                     // 加载商品描述
                     $.getJSON('/rest/item/query/item/desc/' + data.id, function (_data) {
-                        if (_data.status == 200) {
+                        if (_data.status === 200) {
                             //UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
                             itemEditEditor.html(_data.data.itemDesc);
                         }
@@ -71,7 +70,7 @@
 
                     //加载商品规格
                     $.getJSON('/rest/item/param/item/query/' + data.id, function (_data) {
-                        if (_data && _data.status == 200 && _data.data && _data.data.paramData) {
+                        if (_data && _data.status === 200 && _data.data && _data.data.paramData) {
                             $("#itemeEditForm .params").show();
                             $("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
                             $("#itemeEditForm [name=itemParamId]").val(_data.data.id);
@@ -112,7 +111,7 @@
         iconCls: 'icon-cancel',
         handler: function () {
             var ids = getSelectionsIds();
-            if (ids.length == 0) {
+            if (ids.length === 0) {
                 $.messager.alert('提示', '未选中商品!');
                 return;
             }
@@ -120,7 +119,7 @@
                 if (r) {
                     var params = {"ids": ids};
                     $.post("/rest/item/delete", params, function (data) {
-                        if (data.status == 200) {
+                        if (data.status === 200) {
                             $.messager.alert('提示', '删除商品成功!', undefined, function () {
                                 $("#itemList").datagrid("reload");
                             });

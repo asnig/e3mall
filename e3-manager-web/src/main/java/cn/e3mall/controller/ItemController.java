@@ -2,6 +2,7 @@ package cn.e3mall.controller;
 
 import cn.e3mall.common.pojo.AjaxResult;
 import cn.e3mall.common.pojo.TbItem;
+import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,5 +29,23 @@ public class ItemController {
     @ResponseBody
     public AjaxResult<TbItem> getItemList(Integer page, Integer rows) {
         return itemService.getItemList(page, rows);
+    }
+
+    @RequestMapping("/item/save")
+    @ResponseBody
+    public E3Result addItem(TbItem tbItem, String desc) {
+        return itemService.addItem(tbItem, desc);
+    }
+
+    @RequestMapping("/rest/item/update")
+    @ResponseBody
+    public E3Result updateItem(TbItem item, String desc) {
+        return itemService.updateItem(item, desc);
+    }
+
+    @RequestMapping("/rest/item/delete")
+    @ResponseBody
+    public E3Result deleteItem(String ids) {
+        return itemService.deleteItem(ids);
     }
 }
