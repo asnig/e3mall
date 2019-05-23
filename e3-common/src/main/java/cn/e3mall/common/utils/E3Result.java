@@ -14,7 +14,7 @@ public class E3Result implements Serializable {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
-     * 响应业务状态
+     * 响应业务状态 100（错误） 200（成功）
      */
     private Integer status;
 
@@ -48,16 +48,16 @@ public class E3Result implements Serializable {
         return new E3Result(status, msg, data);
     }
 
+    public static E3Result build(Integer status, String msg) {
+        return new E3Result(status, msg, null);
+    }
+
     public static E3Result ok(Object data) {
         return new E3Result(data);
     }
 
     public static E3Result ok() {
         return new E3Result(null);
-    }
-
-    public static E3Result build(Integer status, String msg) {
-        return new E3Result(status, msg, null);
     }
 
     /**

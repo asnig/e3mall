@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<link href="${APP_PATH}/static/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="${APP_PATH}/static/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${APP_PATH}/static/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
     <form id="contentAddForm" class="itemForm" method="post">
         <input type="hidden" name="categoryId"/>
@@ -9,22 +9,22 @@
             <tr>
                 <td>内容标题:</td>
                 <td><input class="easyui-textbox" type="text" name="title" data-options="required:true"
-                           style="width: 280px;"></input></td>
+                           style="width: 280px;"/></td>
             </tr>
             <tr>
                 <td>内容子标题:</td>
-                <td><input class="easyui-textbox" type="text" name="subTitle" style="width: 280px;"></input></td>
+                <td><input class="easyui-textbox" type="text" name="subTitle" style="width: 280px;"/></td>
             </tr>
             <tr>
                 <td>内容描述:</td>
                 <td><input class="easyui-textbox" name="titleDesc"
                            data-options="multiline:true,validType:'length[0,150]'"
-                           style="height:60px;width: 280px;"></input>
+                           style="height:60px;width: 280px;"/>
                 </td>
             </tr>
             <tr>
                 <td>URL:</td>
-                <td><input class="easyui-textbox" type="text" name="url" style="width: 280px;"></input></td>
+                <td><input class="easyui-textbox" type="text" name="url" style="width: 280px;"/></td>
             </tr>
             <tr>
                 <td>图片:</td>
@@ -70,7 +70,7 @@
             contentAddEditor.sync();
 
             $.post("/content/save", $("#contentAddForm").serialize(), function (data) {
-                if (data.status == 200) {
+                if (data.status === 200) {
                     $.messager.alert('提示', '新增内容成功!');
                     $("#contentList").datagrid("reload");
                     E3.closeCurrentWindow();

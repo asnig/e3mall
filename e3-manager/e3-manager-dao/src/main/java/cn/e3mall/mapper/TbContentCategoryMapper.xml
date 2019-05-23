@@ -111,7 +111,7 @@
       #{status,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{isParent,jdbcType=BIT}, 
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="cn.e3mall.common.pojo.TbContentCategory">
+    <insert id="insertSelective" parameterType="cn.e3mall.common.pojo.TbContentCategory" useGeneratedKeys="true" keyProperty="id">
     insert into tb_content_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -22,7 +22,7 @@ public class PictureController {
     @RequestMapping(value = "/pic/upload")
     @ResponseBody
     public Map uploadPic(MultipartFile uploadFile) {
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(16);
         try {
             FastDFSClient client = new FastDFSClient("classpath:conf/client.conf");
             String orgName = uploadFile.getOriginalFilename();
