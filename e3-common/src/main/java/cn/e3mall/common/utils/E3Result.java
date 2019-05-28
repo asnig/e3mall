@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author 10727
+ */
 public class E3Result implements Serializable {
 
     /**

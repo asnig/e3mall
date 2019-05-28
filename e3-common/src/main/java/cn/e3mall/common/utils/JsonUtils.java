@@ -8,10 +8,13 @@ import java.util.List;
 
 /**
  * 淘淘商城自定义响应结构
+ * @author 10727
  */
 public class JsonUtils {
 
-    // 定义jackson对象
+    /**
+     * 定义jackson对象
+     */
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
@@ -24,8 +27,7 @@ public class JsonUtils {
      */
     public static String objectToJson(Object data) {
         try {
-            String string = MAPPER.writeValueAsString(data);
-            return string;
+            return MAPPER.writeValueAsString(data);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -36,7 +38,7 @@ public class JsonUtils {
      * 将json结果集转化为对象
      *
      * @param jsonData json数据
-     * @param clazz    对象中的object类型
+     * @param beanType    对象中的object类型
      * @return
      */
     public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
@@ -61,8 +63,7 @@ public class JsonUtils {
     public static <T> List<T> jsonToList(String jsonData, Class<T> beanType) {
         JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);
         try {
-            List<T> list = MAPPER.readValue(jsonData, javaType);
-            return list;
+            return MAPPER.readValue(jsonData, javaType);
         } catch (Exception e) {
             e.printStackTrace();
         }

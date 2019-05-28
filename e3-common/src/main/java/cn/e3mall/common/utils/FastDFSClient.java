@@ -3,15 +3,20 @@ package cn.e3mall.common.utils;
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.*;
 
+/**
+ * @author 10727
+ */
 public class FastDFSClient {
 
     private TrackerClient trackerClient = null;
     private TrackerServer trackerServer = null;
     private StorageServer storageServer = null;
     private StorageClient1 storageClient = null;
+    private final String classpathPrefix = "classpath:";
+
 
     public FastDFSClient(String conf) throws Exception {
-        if (conf.contains("classpath:")) {
+        if (conf.contains(classpathPrefix)) {
             conf = conf.replace("classpath:", this.getClass().getResource("/").getPath());
         }
         ClientGlobal.init(conf);

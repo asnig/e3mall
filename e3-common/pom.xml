@@ -11,6 +11,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <!-- 依赖的jar包 -->
     <dependencies>
+        <!-- Redis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
         <!-- 时间操作组件 -->
         <dependency>
             <groupId>joda-time</groupId>
