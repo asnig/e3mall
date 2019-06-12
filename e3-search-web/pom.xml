@@ -1,24 +1,29 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cn.e3mall</groupId>
         <artifactId>e3-parent</artifactId>
+        <groupId>cn.e3mall</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../e3-parent/pom.xml</relativePath>
     </parent>
-    <artifactId>e3-manager-web</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>e3-search-web</artifactId>
     <packaging>war</packaging>
+
+    <name>e3-search-web Maven Webapp</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>cn.e3mall</groupId>
-            <artifactId>e3-manager-interface</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.e3mall</groupId>
-            <artifactId>e3-content-interface</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>cn.e3mall</groupId>
             <artifactId>e3-search-interface</artifactId>
@@ -74,12 +79,8 @@
             <artifactId>dubbo</artifactId>
             <exclusions>
                 <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.netty</groupId>
-                    <artifactId>netty</artifactId>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -92,13 +93,8 @@
             <artifactId>zkclient</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <!-- 文件上传组件 -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
         </dependency>
     </dependencies>
     <!-- 配置tomcat插件 -->
@@ -109,7 +105,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <path>/</path>
-                    <port>8081</port>
+                    <port>8085</port>
                 </configuration>
             </plugin>
         </plugins>

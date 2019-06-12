@@ -59,7 +59,7 @@
         iconCls: 'icon-edit',
         handler: function () {
             var ids = E3.getSelectionsIds("#contentList");
-            if (ids.length == 0) {
+            if (ids.length === 0) {
                 $.messager.alert('提示', '必须选择一个内容才能编辑!');
                 return;
             }
@@ -90,7 +90,7 @@
         iconCls: 'icon-cancel',
         handler: function () {
             var ids = E3.getSelectionsIds("#contentList");
-            if (ids.length == 0) {
+            if (ids.length === 0) {
                 $.messager.alert('提示', '未选中商品!');
                 return;
             }
@@ -98,7 +98,7 @@
                 if (r) {
                     var params = {"ids": ids};
                     $.post("/content/delete", params, function (data) {
-                        if (data.status == 200) {
+                        if (data.status === 200) {
                             $.messager.alert('提示', '删除内容成功!', undefined, function () {
                                 $("#contentList").datagrid("reload");
                             });

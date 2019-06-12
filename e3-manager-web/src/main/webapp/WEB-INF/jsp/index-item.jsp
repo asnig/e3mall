@@ -5,7 +5,7 @@
 <script type="text/javascript">
     function importItems() {
         $.post("/index/item/import", null, function (data) {
-            if (data.status == 200) {
+            if (data.status === 200) {
                 $.messager.alert('提示', '导入索引库成功！');
             } else {
                 $.messager.alert('提示', '导入索引库失败！');

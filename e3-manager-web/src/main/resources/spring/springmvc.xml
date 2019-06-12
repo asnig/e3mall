@@ -36,5 +36,6 @@
     <duboo:reference interface="cn.e3mall.service.ItemParamService" id="itemParamService"/>
     <duboo:reference interface="cn.e3mall.content.service.ContentCategoryService" id="contentCategoryService"/>
     <duboo:reference interface="cn.e3mall.content.service.ContentService" id="contentService"/>
+    <duboo:reference interface="cn.e3mall.search.service.SearchItemService" id="searchItemService"/>
 
 </beans>
