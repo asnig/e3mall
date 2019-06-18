@@ -1,9 +1,3 @@
----
-
-typora-copy-images-to: ./
-typora-root-url: ./
----
-
 # zookeeper集群的搭建
 
 * 需要安装JDK环境（略）
