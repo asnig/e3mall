@@ -4,16 +4,27 @@ import cn.e3mall.common.pojo.AjaxResult;
 import cn.e3mall.common.pojo.TbItem;
 import cn.e3mall.common.pojo.TbItemDesc;
 import cn.e3mall.common.pojo.TbItemExample;
+import cn.e3mall.common.redis.JedisClient;
 import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.common.utils.IDUtils;
+import cn.e3mall.common.utils.JsonUtils;
 import cn.e3mall.mapper.TbItemDescMapper;
 import cn.e3mall.mapper.TbItemMapper;
 import cn.e3mall.service.ItemService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import java.util.Date;
 import java.util.List;
 
@@ -24,12 +35,55 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
     @Autowired
     private TbItemMapper itemMapper;
+
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
 
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Resource
+    private Destination topicDestination;
+
+    @Autowired
+    private JedisClient jedisClient;
+
+    /**
+     * redis中商品key的前缀
+     */
+    @Value("${REDIS_ITEM_PRE}")
+    private String redisItemPre;
+
+    /**
+     * item在redis中的过期时间
+     */
+    @Value("${ITEM_CACHE_EXPIRE}")
+    private Integer itemCacheExpire;
+
     @Override
     public TbItem getItemById(Long itemId) {
-        return itemMapper.selectByPrimaryKey(itemId);
+        // 查询缓存
+        try {
+            String json = jedisClient.get(redisItemPre + itemId + ":BASE");
+            if (StringUtils.isNotBlank(json)) {
+                return JsonUtils.jsonToPojo(json, TbItem.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        TbItem tbItem = itemMapper.selectByPrimaryKey(itemId);
+
+        try {
+            // 把商品放入redis缓存中
+            jedisClient.set(redisItemPre + ":" + itemId + ":BASE", JsonUtils.objectToJson(tbItem));
+            // 设置过期时间
+            jedisClient.expire(redisItemPre + ":" + itemId + ":BASE", itemCacheExpire);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tbItem;
     }
 
     @Override
@@ -59,6 +113,15 @@ public class ItemServiceImpl implements ItemService {
         tbItemDesc.setItemDesc(desc);
         itemMapper.insert(tbItem);
         tbItemDescMapper.insert(tbItemDesc);
+
+        // 发送消息
+        jmsTemplate.send(topicDestination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                return session.createTextMessage(itemId + "");
+            }
+        });
+
         return E3Result.ok();
     }
 

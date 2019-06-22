@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 淘淘商城自定义响应结构
+ *
  * @author 10727
  */
 public class JsonUtils {
@@ -22,8 +23,8 @@ public class JsonUtils {
      * <p>Title: pojoToJson</p>
      * <p>Description: </p>
      *
-     * @param data
-     * @return
+     * @param data 需要转换的对象
+     * @return 返回参数对象对应的json字符串
      */
     public static String objectToJson(Object data) {
         try {
@@ -38,13 +39,12 @@ public class JsonUtils {
      * 将json结果集转化为对象
      *
      * @param jsonData json数据
-     * @param beanType    对象中的object类型
-     * @return
+     * @param beanType 对象中的object类型
+     * @return 返回json字符串对应的对象
      */
     public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
         try {
-            T t = MAPPER.readValue(jsonData, beanType);
-            return t;
+            return MAPPER.readValue(jsonData, beanType);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,9 +56,9 @@ public class JsonUtils {
      * <p>Title: jsonToList</p>
      * <p>Description: </p>
      *
-     * @param jsonData
-     * @param beanType
-     * @return
+     * @param jsonData json字符串
+     * @param beanType List中对象的类型
+     * @return 返回List对象
      */
     public static <T> List<T> jsonToList(String jsonData, Class<T> beanType) {
         JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);
