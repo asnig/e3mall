@@ -3,6 +3,7 @@ package cn.e3mall.service;
 
 import cn.e3mall.common.pojo.AjaxResult;
 import cn.e3mall.common.pojo.TbItem;
+import cn.e3mall.common.pojo.TbItemDesc;
 import cn.e3mall.common.utils.E3Result;
 
 /**
@@ -47,4 +48,11 @@ public interface ItemService {
      * 删除商品
      */
     E3Result deleteItem(String ids);
+
+    /**
+     * 通过商品id获取商品描述
+     * @param itemId
+     * @return
+     */
+    TbItemDesc getTbItemDescByItemId(long itemId);
 }

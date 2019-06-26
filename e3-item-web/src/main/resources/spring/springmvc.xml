@@ -18,10 +18,14 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    <!--    FreeMaker-->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
     <!-- 引用dubbo服务 -->
     <dubbo:application name="e3-item-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.25.128:2181"/>
     <dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService"/>
-    <dubbo:reference interface="cn.e3mall.service.ItemDescService" id="itemDescService"/>
 
 </beans>

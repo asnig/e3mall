@@ -1,5 +1,8 @@
 package cn.e3mall.common.redis;
 
+/**
+ * @author 10727
+ */
 public interface JedisClient {
 
 	String set(String key, String value);

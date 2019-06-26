@@ -144,4 +144,34 @@ public class ItemServiceImpl implements ItemService {
         return E3Result.ok();
     }
 
+    /**
+     * 通过商品id获取商品描述
+     *
+     * @param itemId 商品id
+     * @return 商品描述
+     */
+    @Override
+    public TbItemDesc getTbItemDescByItemId(long itemId) {
+
+// 查询缓存
+        try {
+            String json = jedisClient.get(redisItemPre + itemId + ":DESC");
+            if (StringUtils.isNotBlank(json)) {
+                return JsonUtils.jsonToPojo(json, TbItemDesc.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        TbItemDesc tbItemDesc = tbItemDescMapper.selectByPrimaryKey(itemId);
+        try {
+            // 把商品放入redis缓存中
+            jedisClient.set(redisItemPre + ":" + itemId + ":DESC", JsonUtils.objectToJson(tbItemDesc));
+            // 设置过期时间
+            jedisClient.expire(redisItemPre + ":" + itemId + ":DESC", itemCacheExpire);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tbItemDesc;
+    }
+
 }

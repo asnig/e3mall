@@ -2,6 +2,7 @@ package cn.e3mall.controller;
 
 import cn.e3mall.common.pojo.AjaxResult;
 import cn.e3mall.common.pojo.TbItem;
+import cn.e3mall.common.pojo.TbItemDesc;
 import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,12 @@ public class ItemController {
     @ResponseBody
     public E3Result deleteItem(String ids) {
         return itemService.deleteItem(ids);
+    }
+
+    @RequestMapping("/rest/item/query/item/desc/{id}")
+    @ResponseBody
+    public E3Result queryDesc(@PathVariable("id") long id) {
+        TbItemDesc tbItemDesc = itemService.getTbItemDescByItemId(id);
+        return E3Result.ok(tbItemDesc);
     }
 }

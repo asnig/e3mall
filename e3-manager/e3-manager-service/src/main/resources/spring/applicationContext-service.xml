@@ -18,7 +18,6 @@
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="cn.e3mall.service.ItemService" ref="itemServiceImpl"/>
     <dubbo:service interface="cn.e3mall.service.ItemCatService" ref="itemCatServiceImpl"/>
-    <dubbo:service interface="cn.e3mall.service.ItemDescService" ref="itemDescServiceImpl"/>
     <dubbo:service interface="cn.e3mall.service.ItemParamService" ref="itemParamServiceImpl"/>
     <dubbo:provider delay="-1" timeout="600000" retries="0"/>
 
