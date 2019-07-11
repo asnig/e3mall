@@ -7,6 +7,7 @@ import cn.e3mall.service.ItemService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.jms.Message;
@@ -27,7 +28,7 @@ public class HtmlGenListener implements MessageListener {
     @Autowired
     private FreeMarkerConfigurer freeMarkerConfigurer;
 
-    @Autowired
+    @Value("${GEN_HTML_PATH}")
     private String genHtmlPath;
 
     @Override
