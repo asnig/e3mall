@@ -145,7 +145,8 @@ public final class CookieUtils {
             if (cookieMaxage > 0) {
                 cookie.setMaxAge(cookieMaxage);
             }
-            if (null != request) {// 设置域名的cookie
+            // 设置域名的cookie
+            if (null != request) {
                 String domainName = getDomainName(request);
                 System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {
@@ -164,8 +165,8 @@ public final class CookieUtils {
      *
      * @param cookieMaxage cookie生效的最大秒数
      */
-    private static final void doSetCookie(HttpServletRequest request, HttpServletResponse response,
-                                          String cookieName, String cookieValue, int cookieMaxage, String encodeString) {
+    private static void doSetCookie(HttpServletRequest request, HttpServletResponse response,
+                                    String cookieName, String cookieValue, int cookieMaxage, String encodeString) {
         try {
             if (cookieValue == null) {
                 cookieValue = "";

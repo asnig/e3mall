@@ -2,14 +2,14 @@ package cn.e3mall.common.redis;
 
 import redis.clients.jedis.JedisCluster;
 
-/**
- * @author 10727
- */
+import java.util.List;
+
 public class JedisClientCluster implements JedisClient {
 	
 	private JedisCluster jedisCluster;
 
-	public JedisCluster getJedisCluster() {
+
+    public JedisCluster getJedisCluster() {
 		return jedisCluster;
 	}
 
@@ -61,5 +61,20 @@ public class JedisClientCluster implements JedisClient {
 	public Long hdel(String key, String... field) {
 		return jedisCluster.hdel(key, field);
 	}
+
+    @Override
+    public Boolean hexists(String key, String field) {
+        return jedisCluster.hexists(key, field);
+    }
+
+    @Override
+    public List<String> hvals(String key) {
+        return jedisCluster.hvals(key);
+    }
+
+    @Override
+    public Long del(String key) {
+        return jedisCluster.del(key);
+    }
 
 }
